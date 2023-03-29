@@ -25,25 +25,25 @@ galleryMarkUp.insertAdjacentHTML('beforeend', galleryEl)
 galleryMarkUp.addEventListener('click', onImgClick)
 
 function onImgClick(evt) {
-    evt.preventDefault();
+     evt.preventDefault();
 
     if (evt.target.nodeName !== 'IMG') {
         return;
     }
 
-    const modal = basicLightbox.create(
-        `<img src="${evt.target.dataset.source}" width="800" height="600">`,
+    let instance = basicLightbox.create(
+        `<img src="${evt.target.dataset.source} "width="800" height="600">`,
 
-        {   onShow: () => window.addEventListener('keydown', onEscKeyPress),
-            onClose: () => window.removeEventListener('keydown', onEscKeyPress),
+        {   onShow: (instance) => window.addEventListener('keydown', onEscKeyPress),
+            onClose: (instance) => window.removeEventListener('keydown', onEscKeyPress),
         }
     );
     
-    modal.show();
+    instance.show();
 
     function onEscKeyPress(evt) {   
         if (evt.code === "Escape") {
-            modal.close();
+            instance.close();
         }
     }
 }
